@@ -32,7 +32,7 @@ Before installing, ensure you have the following installed:
 
 - PHP 8.2+
 - Composer
-- Node.js (v18+) and pnpm
+- Node.js (v22+) and pnpm
 - MySQL or compatible database
 - Git
 
@@ -41,8 +41,8 @@ Before installing, ensure you have the following installed:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/cast-gallery.git
-   cd cast-gallery
+   git clone git@github.com:castws/cast-collection.git
+   cd cast-collection
    ```
 
 2. Install PHP dependencies:
@@ -80,13 +80,19 @@ Before installing, ensure you have the following installed:
    DB_PASSWORD=password
    ```
 
-7. Run database migrations and seed initial data:
+7. Start database with docker
+
+   ```bash
+   docker compose up -d
+   ```
+
+8. Run database migrations and seed initial data:
 
    ```bash
    php artisan migrate --seed
    ```
 
-8. Create a symbolic link for storage:
+9. Create a symbolic link for storage:
    ```bash
    php artisan storage:link
    ```
@@ -100,3 +106,9 @@ Before installing, ensure you have the following installed:
    ```
 
 2. Access the application at [http://localhost:8000](http://localhost:8000)
+
+## Run tests
+
+   ```bash
+   php artisan test
+   ```
