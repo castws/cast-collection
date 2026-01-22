@@ -23,7 +23,7 @@ Built with Laravel, React, and TypeScript.
 - Docker
 - Git
 - Composer
-- npm
+- pnpm
 - phpunit
 
 ## Prerequisites
@@ -32,7 +32,7 @@ Before installing, ensure you have the following installed:
 
 - PHP 8.2+
 - Composer
-- Node.js (v18+) and npm
+- Node.js (v18+) and pnpm
 - MySQL or compatible database
 - Git
 
@@ -54,7 +54,7 @@ Before installing, ensure you have the following installed:
 3. Install JavaScript dependencies:
 
    ```bash
-   npm install
+   pnpm install
    ```
 
 4. Create an environment file:

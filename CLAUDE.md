@@ -46,17 +46,17 @@ Alternatively, run services individually:
 
 ```bash
 php artisan serve           # Start Laravel server
-npm run dev                 # Start Vite only
+pnpm run dev                 # Start Vite only
 ```
 
 ### Frontend Development
 
 ```bash
-npm run build               # Build for production
-npm run lint                # Run ESLint with auto-fix
-npm run format              # Format code with Prettier
-npm run format:check        # Check formatting without changes
-npm run types               # Type check without emitting files
+pnpm run build               # Build for production
+pnpm run lint                # Run ESLint with auto-fix
+pnpm run format              # Format code with Prettier
+pnpm run format:check        # Check formatting without changes
+pnpm run types               # Type check without emitting files
 ```
 
 ### Backend Development
