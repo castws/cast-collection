@@ -1,5 +1,4 @@
 import type { Preview } from '@storybook/react-vite';
-import { useEffect } from 'react';
 import '../resources/css/app.css';
 
 const preview: Preview = {
@@ -23,27 +22,8 @@ const preview: Preview = {
     },
   },
 
-  globalTypes: {
-    theme: {
-      description: 'Global theme for components',
-      defaultValue: 'light',
-      toolbar: {
-        title: 'Theme',
-        icon: 'circlehollow',
-        items: ['light', 'dark'],
-        dynamicTitle: true,
-      },
-    },
-  },
-
   decorators: [
-    (Story, context) => {
-      const theme = context.globals.theme || 'light';
-
-      useEffect(() => {
-        document.documentElement.classList.toggle('dark', theme === 'dark');
-      }, [theme]);
-
+    (Story) => {
       return (
         <div className="bg-background text-foreground p-4">
           <Story />

@@ -25,6 +25,8 @@ Cast Collection is a full-stack application for managing and displaying cast ima
 **Development:**
 
 - PHPUnit for PHP testing
+- Vitest for frontend testing (with Storybook integration)
+- Storybook for component development and testing
 - ESLint and Prettier for code quality
 
 ## Common Commands
@@ -57,6 +59,8 @@ pnpm run lint                # Run ESLint with auto-fix
 pnpm run format              # Format code with Prettier
 pnpm run format:check        # Check formatting without changes
 pnpm run types               # Type check without emitting files
+pnpm run storybook           # Start Storybook dev server on port 6006
+pnpm run build-storybook     # Build Storybook for production
 ```
 
 ### Backend Development
@@ -126,9 +130,8 @@ app/
 resources/js/
 ├── pages/               # Inertia page components (mapped to routes)
 │   ├── auth/           # Login, register, password reset pages
-│   ├── settings/       # User settings pages
-│   ├── dashboard.tsx
-│   └── welcome.tsx
+│   ├── settings/       # User settings pages (profile, password, appearance)
+│   └── images.tsx
 ├── layouts/            # Page layout wrappers
 │   ├── app/           # Authenticated app layout components
 │   ├── auth/          # Authentication layout components
@@ -146,7 +149,7 @@ resources/js/
 
 **Key Frontend Patterns:**
 
-- Pages in `resources/js/pages/` correspond to Inertia route names (e.g., `Inertia::render('dashboard')` → `pages/dashboard.tsx`)
+- Pages in `resources/js/pages/` correspond to Inertia route names (e.g., `Inertia::render('images')` → `pages/images.tsx`)
 - Layouts wrap pages and provide navigation, headers, sidebars
 - Path aliases: `@/` maps to `resources/js/` (configured in both tsconfig.json and components.json)
 - Theme/appearance managed via `use-appearance` hook with cookie persistence
@@ -192,7 +195,7 @@ The project uses Shadcn/UI with custom configuration:
 - Use `Link` component from `@inertiajs/react` for navigation
 - Use `useForm` hook for form handling with validation
 - Access shared data via `usePage().props`
-- Route names available via Ziggy: `route('dashboard')`
+- Route names available via Ziggy: `route('images')`
 
 ### Database Migrations
 
@@ -205,7 +208,15 @@ When creating migrations:
 
 ### Testing
 
+**Backend (PHPUnit):**
+
 - Feature tests for HTTP endpoints in `tests/Feature/`
 - Unit tests for isolated logic in `tests/Unit/`
 - Use in-memory SQLite for testing (configured in `phpunit.xml`)
 - Follow existing test patterns for authentication and settings features
+
+**Frontend (Storybook + Vitest):**
+
+- Component stories in `resources/js/components/**/*.stories.tsx`
+- Storybook is configured with Vitest integration for component testing
+- Run `pnpm run storybook` to develop and test components in isolation
