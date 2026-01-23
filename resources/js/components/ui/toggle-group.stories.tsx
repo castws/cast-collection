@@ -1,8 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { ToggleGroup, ToggleGroupItem } from './toggle-group';
 import { AlignCenter, AlignLeft, AlignRight, Bold, Italic, Underline } from 'lucide-react';
+import type { ComponentProps } from 'react';
 
-const meta: Meta<typeof ToggleGroup> = {
+type ToggleGroupProps = ComponentProps<typeof ToggleGroup>;
+
+const meta: Meta<ToggleGroupProps> = {
     title: 'UI/ToggleGroup',
     component: ToggleGroup,
     parameters: {
@@ -32,10 +35,10 @@ const meta: Meta<typeof ToggleGroup> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<ToggleGroupProps>;
 
 export const Single: Story = {
-    render: (args) => (
+    render: (args: ToggleGroupProps) => (
         <ToggleGroup {...args}>
             <ToggleGroupItem value="left" aria-label="Align left">
                 <AlignLeft className="size-4" />
@@ -54,7 +57,7 @@ export const Multiple: Story = {
     args: {
         type: 'multiple',
     },
-    render: (args) => (
+    render: (args: ToggleGroupProps) => (
         <ToggleGroup {...args}>
             <ToggleGroupItem value="bold" aria-label="Toggle bold">
                 <Bold className="size-4" />
@@ -73,7 +76,7 @@ export const Outline: Story = {
     args: {
         variant: 'outline',
     },
-    render: (args) => (
+    render: (args: ToggleGroupProps) => (
         <ToggleGroup {...args}>
             <ToggleGroupItem value="left" aria-label="Align left">
                 <AlignLeft className="size-4" />
@@ -92,7 +95,7 @@ export const Small: Story = {
     args: {
         size: 'sm',
     },
-    render: (args) => (
+    render: (args: ToggleGroupProps) => (
         <ToggleGroup {...args}>
             <ToggleGroupItem value="left" aria-label="Align left">
                 <AlignLeft className="size-4" />
@@ -111,7 +114,7 @@ export const Large: Story = {
     args: {
         size: 'lg',
     },
-    render: (args) => (
+    render: (args: ToggleGroupProps) => (
         <ToggleGroup {...args}>
             <ToggleGroupItem value="left" aria-label="Align left">
                 <AlignLeft className="size-4" />
@@ -130,7 +133,7 @@ export const Disabled: Story = {
     args: {
         disabled: true,
     },
-    render: (args) => (
+    render: (args: ToggleGroupProps) => (
         <ToggleGroup {...args}>
             <ToggleGroupItem value="left" aria-label="Align left">
                 <AlignLeft className="size-4" />
