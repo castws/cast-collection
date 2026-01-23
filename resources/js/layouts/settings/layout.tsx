@@ -17,11 +17,12 @@ const sidebarNavItems: NavItem[] = [
     href: '/settings/password',
     icon: null,
   },
-  {
-    title: 'Appearance',
-    href: '/settings/appearance',
-    icon: null,
-  },
+  // Dark mode is temporarily disabled. To re-enable, uncomment the following lines
+  // {
+  //   title: 'Appearance',
+  //   href: '/settings/appearance',
+  //   icon: null,
+  // },
 ];
 
 export default function SettingsLayout({ children }: PropsWithChildren) {
