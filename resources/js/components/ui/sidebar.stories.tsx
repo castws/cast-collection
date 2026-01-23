@@ -21,7 +21,6 @@ import {
     SidebarMenuSubItem,
     SidebarProvider,
     SidebarRail,
-    SidebarSeparator,
     SidebarTrigger,
 } from './sidebar';
 import {
