@@ -45,22 +45,16 @@ export interface User {
 export interface ImageType {
   id: number;
   name: string;
-  created_at: string;
-  updated_at: string;
 }
 
 export interface CastType {
   id: number;
   name: string;
-  created_at: string;
-  updated_at: string;
 }
 
 export interface Gender {
   id: number;
   name: string;
-  created_at: string;
-  updated_at: string;
 }
 
 export interface Image {

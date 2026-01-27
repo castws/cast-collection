@@ -46,8 +46,7 @@ class Image extends Model
      */
     public function castTypes(): BelongsToMany
     {
-        return $this->belongsToMany(CastType::class, 'image_cast_types')
-            ->withTimestamps();
+        return $this->belongsToMany(CastType::class, 'image_cast_types');
     }
 
     /**
@@ -55,8 +54,7 @@ class Image extends Model
      */
     public function genders(): BelongsToMany
     {
-        return $this->belongsToMany(Gender::class, 'image_genders')
-            ->withTimestamps();
+        return $this->belongsToMany(Gender::class, 'image_genders');
     }
 
     /**

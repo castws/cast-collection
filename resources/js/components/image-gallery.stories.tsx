@@ -15,22 +15,15 @@ const mockUser = {
 const mockImageType = {
   id: 1,
   name: 'Recreational',
-  created_at: '2024-01-01',
-  updated_at: '2024-01-01',
 };
 
 const mockCastTypes = [
-  { id: 1, name: 'LLC', created_at: '2024-01-01', updated_at: '2024-01-01' },
-  {
-    id: 2,
-    name: 'DHS',
-    created_at: '2024-01-01',
-    updated_at: '2024-01-01',
-  },
+  { id: 1, name: 'LLC' },
+  { id: 2, name: 'DHS' },
 ];
 
 const mockGenders = [
-  { id: 1, name: 'Male', created_at: '2024-01-01', updated_at: '2024-01-01' },
+  { id: 1, name: 'Male' },
 ];
 
 const createMockImage = (id: number, overrides?: Partial<Image>): Image => ({

@@ -10,6 +10,8 @@ class CastType extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -24,7 +26,6 @@ class CastType extends Model
      */
     public function images(): BelongsToMany
     {
-        return $this->belongsToMany(Image::class, 'image_cast_types')
-            ->withTimestamps();
+        return $this->belongsToMany(Image::class, 'image_cast_types');
     }
 }

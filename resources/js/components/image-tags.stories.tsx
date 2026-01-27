@@ -14,19 +14,15 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const mockCastTypes = [
-  { id: 1, name: 'Arm', created_at: '', updated_at: '' },
-  { id: 2, name: 'Leg', created_at: '', updated_at: '' },
+  { id: 1, name: 'LLC' },
+  { id: 2, name: 'LAC' },
 ];
 
-const mockGenders = [
-  { id: 1, name: 'Female', created_at: '', updated_at: '' },
-];
+const mockGenders = [{ id: 1, name: 'Female' }];
 
 const mockImageType = {
   id: 1,
   name: 'Photo',
-  created_at: '',
-  updated_at: '',
 };
 
 export const Default: Story = {
@@ -39,24 +35,24 @@ export const Default: Story = {
 
 export const SingleCastType: Story = {
   args: {
-    castTypes: [{ id: 1, name: 'Full Body', created_at: '', updated_at: '' }],
-    genders: [{ id: 1, name: 'Male', created_at: '', updated_at: '' }],
-    imageType: { id: 2, name: 'Illustration', created_at: '', updated_at: '' },
+    castTypes: [{ id: 1, name: 'LLC' }],
+    genders: [{ id: 1, name: 'Male' }],
+    imageType: { id: 2, name: 'Illustration' },
   },
 };
 
 export const MultipleTags: Story = {
   args: {
     castTypes: [
-      { id: 1, name: 'Arm', created_at: '', updated_at: '' },
-      { id: 2, name: 'Leg', created_at: '', updated_at: '' },
-      { id: 3, name: 'Torso', created_at: '', updated_at: '' },
+      { id: 1, name: 'LLC' },
+      { id: 2, name: 'LAC' },
+      { id: 3, name: 'DHS' },
     ],
     genders: [
-      { id: 1, name: 'Female', created_at: '', updated_at: '' },
-      { id: 2, name: 'Male', created_at: '', updated_at: '' },
+      { id: 1, name: 'Female' },
+      { id: 2, name: 'Male' },
     ],
-    imageType: { id: 1, name: 'Photo', created_at: '', updated_at: '' },
+    imageType: { id: 1, name: 'Photo' },
   },
 };
 

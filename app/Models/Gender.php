@@ -10,6 +10,8 @@ class Gender extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -24,7 +26,6 @@ class Gender extends Model
      */
     public function images(): BelongsToMany
     {
-        return $this->belongsToMany(Image::class, 'image_genders')
-            ->withTimestamps();
+        return $this->belongsToMany(Image::class, 'image_genders');
     }
 }

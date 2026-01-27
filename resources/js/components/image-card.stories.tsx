@@ -15,22 +15,15 @@ const mockUser = {
 const mockImageType = {
   id: 1,
   name: 'Real',
-  created_at: '2024-01-01',
-  updated_at: '2024-01-01',
 };
 
 const mockCastTypes = [
-  { id: 1, name: 'LAC', created_at: '2024-01-01', updated_at: '2024-01-01' },
-  {
-    id: 2,
-    name: 'LLWC',
-    created_at: '2024-01-01',
-    updated_at: '2024-01-01',
-  },
+  { id: 1, name: 'LAC' },
+  { id: 2, name: 'LLWC' },
 ];
 
 const mockGenders = [
-  { id: 1, name: 'Female', created_at: '2024-01-01', updated_at: '2024-01-01' },
+  { id: 1, name: 'Female' },
 ];
 
 const createMockImage = (id: number, overrides?: Partial<Image>): Image => ({
@@ -94,12 +87,7 @@ export const SingleCastType: Story = {
   args: {
     image: createMockImage(1, {
       cast_types: [
-        {
-          id: 1,
-          name: 'LLC',
-          created_at: '2024-01-01',
-          updated_at: '2024-01-01',
-        },
+        { id: 1, name: 'LLC' },
       ],
     }),
   },
@@ -109,30 +97,10 @@ export const ManyCastTypes: Story = {
   args: {
     image: createMockImage(1, {
       cast_types: [
-        {
-          id: 1,
-          name: 'LLC',
-          created_at: '2024-01-01',
-          updated_at: '2024-01-01',
-        },
-        {
-          id: 2,
-          name: 'LAT',
-          created_at: '2024-01-01',
-          updated_at: '2024-01-01',
-        },
-        {
-          id: 3,
-          name: 'Minerva',
-          created_at: '2024-01-01',
-          updated_at: '2024-01-01',
-        },
-        {
-          id: 4,
-          name: 'Other',
-          created_at: '2024-01-01',
-          updated_at: '2024-01-01',
-        },
+        { id: 1, name: 'LLC' },
+        { id: 2, name: 'LAT' },
+        { id: 3, name: 'Minerva' },
+        { id: 4, name: 'Other' },
       ],
     }),
   },
