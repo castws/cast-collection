@@ -6,7 +6,10 @@ import AppLayout from '@/layouts/app-layout';
 import { type Image } from '@/types';
 import { Head, Link } from '@inertiajs/react';
 import { formatDistanceToNow } from 'date-fns';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, X } from 'lucide-react';
+import { useCallback, useEffect, useState } from 'react';
+
+type ViewMode = 'details' | 'fit' | 'natural';
 
 interface ImageShowProps {
   image: Image;
@@ -14,6 +17,20 @@ interface ImageShowProps {
 
 export default function ImageShow({ image }: ImageShowProps) {
   const imageUrl = `/storage/${image.file_path}`;
+  const [viewMode, setViewMode] = useState<ViewMode>('details');
+
+  const closeViewer = useCallback(() => setViewMode('details'), []);
+
+  useEffect(() => {
+    if (viewMode === 'details') return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeViewer();
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [viewMode, closeViewer]);
 
   return (
     <AppLayout>
@@ -33,7 +50,8 @@ export default function ImageShow({ image }: ImageShowProps) {
           <img
             src={imageUrl}
             alt={image.description || 'Image'}
-            className="w-full object-contain"
+            className="w-full cursor-pointer object-contain"
+            onClick={() => setViewMode('fit')}
           />
 
           <div className="space-y-6">
@@ -71,6 +89,41 @@ export default function ImageShow({ image }: ImageShowProps) {
           </div>
         </div>
       </div>
+
+      {viewMode !== 'details' && (
+        <div className="fixed inset-0 z-50 bg-black">
+          <button
+            onClick={closeViewer}
+            className="absolute top-4 right-4 z-10 rounded-full bg-black/50 p-2 text-white transition-colors hover:bg-black/75"
+          >
+            <X className="h-6 w-6" />
+          </button>
+
+          {viewMode === 'fit' ? (
+            <div
+              className="flex h-full w-full cursor-zoom-in items-center justify-center"
+              onClick={() => setViewMode('natural')}
+            >
+              <img
+                src={imageUrl}
+                alt={image.description || 'Image'}
+                className="h-full w-full object-contain"
+              />
+            </div>
+          ) : (
+            <div
+              className="h-full w-full cursor-zoom-out overflow-auto"
+              onClick={() => setViewMode('fit')}
+            >
+              <img
+                src={imageUrl}
+                alt={image.description || 'Image'}
+                className="max-w-none"
+              />
+            </div>
+          )}
+        </div>
+      )}
     </AppLayout>
   );
 }
