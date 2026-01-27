@@ -1,5 +1,5 @@
-import { Link } from '@inertiajs/react';
 import { type PaginationLink } from '@/types';
+import { Link } from '@inertiajs/react';
 
 interface PaginationProps {
   links: PaginationLink[];

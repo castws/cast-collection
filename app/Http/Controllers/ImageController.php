@@ -31,6 +31,18 @@ class ImageController extends Controller
     }
 
     /**
+     * Display a single image with all its details.
+     */
+    public function show(Image $image): Response
+    {
+        $image->load(['user', 'imageType', 'castTypes', 'genders']);
+
+        return Inertia::render('images/show', [
+            'image' => $image,
+        ]);
+    }
+
+    /**
      * Store a newly uploaded image.
      */
     public function store(StoreImageRequest $request): RedirectResponse
@@ -49,11 +61,11 @@ class ImageController extends Controller
         ]);
 
         // Sync many-to-many relationships
-        if (!empty($validated['cast_type_ids'])) {
+        if (! empty($validated['cast_type_ids'])) {
             $image->castTypes()->sync($validated['cast_type_ids']);
         }
 
-        if (!empty($validated['gender_ids'])) {
+        if (! empty($validated['gender_ids'])) {
             $image->genders()->sync($validated['gender_ids']);
         }
 

@@ -10,6 +10,7 @@ Route::get('/', function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('images', [ImageController::class, 'index'])->name('images');
+    Route::get('images/{image}', [ImageController::class, 'show'])->name('images.show');
     Route::post('images', [ImageController::class, 'store'])->name('images.store');
 });
 

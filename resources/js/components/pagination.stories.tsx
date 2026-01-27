@@ -1,6 +1,6 @@
+import type { PaginationLink } from '@/types';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import Pagination from './pagination';
-import type { PaginationLink } from '@/types';
 
 const createPaginationLinks = (
   currentPage: number,

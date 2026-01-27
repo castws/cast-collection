@@ -126,6 +126,86 @@ class ImageControllerTest extends TestCase
     }
 
     // ==========================================
+    // Detail (Show) Tests
+    // ==========================================
+
+    public function test_guests_cannot_view_image_detail(): void
+    {
+        $user = User::factory()->create();
+        $imageType = ImageType::factory()->create();
+        $image = Image::factory()->for($user)->for($imageType)->create();
+
+        $this->get(route('images.show', $image))
+            ->assertRedirect(route('login'));
+    }
+
+    public function test_authenticated_users_can_view_image_detail(): void
+    {
+        $user = User::factory()->create();
+        $imageType = ImageType::factory()->create();
+        $image = Image::factory()->for($user)->for($imageType)->create();
+
+        $this->actingAs($user)
+            ->get(route('images.show', $image))
+            ->assertOk();
+    }
+
+    public function test_image_detail_returns_404_for_nonexistent_image(): void
+    {
+        $user = User::factory()->create();
+
+        $this->actingAs($user)
+            ->get(route('images.show', 99999))
+            ->assertNotFound();
+    }
+
+    public function test_image_detail_loads_all_relationships(): void
+    {
+        $user = User::factory()->create();
+        $imageType = ImageType::factory()->create();
+        $castType = CastType::factory()->create();
+        $gender = Gender::factory()->create();
+
+        $image = Image::factory()
+            ->for($user)
+            ->for($imageType)
+            ->create();
+
+        $image->castTypes()->attach($castType);
+        $image->genders()->attach($gender);
+
+        $response = $this->actingAs($user)
+            ->get(route('images.show', $image));
+
+        $response->assertOk();
+
+        $imageData = $response->original->getData()['page']['props']['image'];
+
+        $this->assertArrayHasKey('user', $imageData);
+        $this->assertArrayHasKey('image_type', $imageData);
+        $this->assertArrayHasKey('cast_types', $imageData);
+        $this->assertArrayHasKey('genders', $imageData);
+
+        $this->assertEquals($user->id, $imageData['user']['id']);
+        $this->assertEquals($imageType->id, $imageData['image_type']['id']);
+        $this->assertCount(1, $imageData['cast_types']);
+        $this->assertCount(1, $imageData['genders']);
+    }
+
+    public function test_any_authenticated_user_can_view_any_image(): void
+    {
+        $owner = User::factory()->create();
+        $viewer = User::factory()->create();
+        $imageType = ImageType::factory()->create();
+
+        $image = Image::factory()->for($owner)->for($imageType)->create();
+
+        $this->actingAs($viewer)
+            ->get(route('images.show', $image))
+            ->assertOk();
+    }
+
+    // ==========================================
     // Upload (Store) Tests
     // ==========================================
 
