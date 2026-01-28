@@ -1,5 +1,13 @@
 import type { Preview } from '@storybook/react-vite';
+import { route as routeMock } from './ziggy-mock';
 import '../resources/css/app.css';
+
+// Provide route as a global for Storybook (matches Laravel's behavior)
+declare global {
+  // eslint-disable-next-line no-var
+  var route: typeof routeMock;
+}
+globalThis.route = routeMock;
 
 const preview: Preview = {
   parameters: {

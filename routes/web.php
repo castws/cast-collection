@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\ResizedImageController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -12,6 +13,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('images', [ImageController::class, 'index'])->name('images');
     Route::get('images/{image}', [ImageController::class, 'show'])->name('images.show');
     Route::post('images', [ImageController::class, 'store'])->name('images.store');
+    Route::get('images/{image}/resize/{width}', ResizedImageController::class)
+        ->name('images.resize')
+        ->whereNumber('width');
 });
 
 require __DIR__.'/settings.php';

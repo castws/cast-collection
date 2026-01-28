@@ -1,6 +1,7 @@
 import ImageTags from '@/components/image-tags';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
+import { imageUrl } from '@/lib/image-url';
 import { cn } from '@/lib/utils';
 import { type Image } from '@/types';
 import { Link } from '@inertiajs/react';
@@ -11,7 +12,7 @@ interface ImageCardProps {
 }
 
 export default function ImageCard({ image, className }: ImageCardProps) {
-  const imageUrl = `/storage/${image.file_path}`;
+  const src = imageUrl(image, 400);
 
   return (
     <Link href={route('images.show', image.id)} className="block">
@@ -22,7 +23,7 @@ export default function ImageCard({ image, className }: ImageCardProps) {
         )}
       >
         <img
-          src={imageUrl}
+          src={src}
           alt={image.description || 'Uploaded image'}
           className="w-full border-b"
         />
