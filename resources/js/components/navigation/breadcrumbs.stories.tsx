@@ -8,7 +8,7 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from './ui/breadcrumb';
+} from '@/components/ui/breadcrumb';
 
 /**
  * This story demonstrates the Breadcrumbs pattern used in the app.

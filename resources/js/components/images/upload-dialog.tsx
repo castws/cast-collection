@@ -1,4 +1,4 @@
-import ImageUploadForm from '@/components/image-upload-form';
+import ImageUploadForm from '@/components/images/image-upload-form';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,

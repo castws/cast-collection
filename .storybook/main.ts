@@ -14,7 +14,6 @@ const config: StorybookConfig = {
     { from: './public', to: '/storage' }
   ],
   "addons": [
-    "@chromatic-com/storybook",
     "@storybook/addon-vitest",
     "@storybook/addon-a11y",
     "@storybook/addon-docs"

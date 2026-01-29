@@ -1,5 +1,5 @@
-import ImageGallery from '@/components/image-gallery';
-import UploadDialog from '@/components/upload-dialog';
+import ImageGallery from '@/components/images/image-gallery';
+import UploadDialog from '@/components/images/upload-dialog';
 import AppLayout from '@/layouts/app-layout';
 import {
   type CastType,

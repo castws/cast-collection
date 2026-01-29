@@ -1,4 +1,4 @@
-import ImageTags from '@/components/image-tags';
+import ImageTags from '@/components/images/image-tags';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { imageUrl } from '@/lib/image-url';

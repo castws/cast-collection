@@ -1,5 +1,5 @@
-import ImageCard from '@/components/image-card';
-import Pagination from '@/components/pagination';
+import ImageCard from '@/components/images/image-card';
+import Pagination from '@/components/common/pagination';
 import { type Image, type PaginatedData } from '@/types';
 
 interface ImageGalleryProps {
