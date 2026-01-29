@@ -13,7 +13,7 @@ class ResizedImageController extends Controller
     /**
      * Allowed widths in pixels.
      */
-    private const ALLOWED_WIDTHS = [100, 400, 800];
+    private const ALLOWED_WIDTHS = [400, 816];
 
     /**
      * Serve a resized version of an image, generating it on first request.

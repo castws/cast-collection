@@ -131,7 +131,7 @@ resources/js/
 ├── pages/               # Inertia page components (mapped to routes)
 │   ├── auth/           # Login, register, password reset pages
 │   ├── settings/       # User settings pages (profile, password, appearance)
-│   └── images.tsx
+│   └──images/          # images gallery and details
 ├── layouts/            # Page layout wrappers
 │   ├── app/           # Authenticated app layout components
 │   ├── auth/          # Authentication layout components

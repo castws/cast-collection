@@ -2,6 +2,7 @@ import ImageTags from '@/components/images/image-tags';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { imageUrl } from '@/lib/image-url';
 import AppLayout from '@/layouts/app-layout';
 import { type Image } from '@/types';
 import { Head, Link } from '@inertiajs/react';
@@ -16,7 +17,8 @@ interface ImageShowProps {
 }
 
 export default function ImageShow({ image }: ImageShowProps) {
-  const imageUrl = `/storage/${image.file_path}`;
+  const detailImageUrl = imageUrl(image, 816);
+  const fullImageUrl = imageUrl(image);
   const [viewMode, setViewMode] = useState<ViewMode>('details');
 
   const closeViewer = useCallback(() => setViewMode('details'), []);
@@ -48,7 +50,7 @@ export default function ImageShow({ image }: ImageShowProps) {
 
         <div className="grid gap-6 lg:grid-cols-[2fr_1fr]">
           <img
-            src={imageUrl}
+            src={detailImageUrl}
             alt={image.description || 'Image'}
             className="w-full cursor-pointer object-contain"
             onClick={() => setViewMode('fit')}
@@ -105,7 +107,7 @@ export default function ImageShow({ image }: ImageShowProps) {
               onClick={() => setViewMode('natural')}
             >
               <img
-                src={imageUrl}
+                src={fullImageUrl}
                 alt={image.description || 'Image'}
                 className="h-full w-full object-contain"
               />
@@ -116,7 +118,7 @@ export default function ImageShow({ image }: ImageShowProps) {
               onClick={() => setViewMode('fit')}
             >
               <img
-                src={imageUrl}
+                src={fullImageUrl}
                 alt={image.description || 'Image'}
                 className="max-w-none"
               />
