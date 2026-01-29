@@ -22,7 +22,7 @@ class ImageController extends Controller
             ->latest()
             ->paginate(12);
 
-        return Inertia::render('images', [
+        return Inertia::render('images/index', [
             'images' => $images,
             'imageTypes' => ImageType::all(),
             'castTypes' => CastType::all(),
@@ -37,7 +37,7 @@ class ImageController extends Controller
     {
         $image->load(['user', 'imageType', 'castTypes', 'genders']);
 
-        return Inertia::render('images/show', [
+        return Inertia::render('images/detail', [
             'image' => $image,
         ]);
     }

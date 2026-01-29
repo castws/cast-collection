@@ -15,13 +15,11 @@ export default function ImageCard({ image, className }: ImageCardProps) {
   const src = imageUrl(image, 400);
 
   return (
-    <Link href={route('images.show', image.id)} className="block">
-      <Card
-        className={cn(
-          className,
-          'gap-3 overflow-hidden py-0 transition-shadow hover:shadow-md',
-        )}
-      >
+    <Link
+      href={route('images.show', image.id)}
+      className={cn(className, 'block')}
+    >
+      <Card className="gap-3 overflow-hidden py-0 transition-shadow hover:shadow-md">
         <img
           src={src}
           alt={image.description || 'Uploaded image'}

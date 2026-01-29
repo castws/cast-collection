@@ -1,6 +1,6 @@
 import type { Preview } from '@storybook/react-vite';
-import { route as routeMock } from './ziggy-mock';
 import '../resources/css/app.css';
+import { route as routeMock } from './ziggy-mock';
 
 // Provide route as a global for Storybook (matches Laravel's behavior)
 declare global {
