@@ -1,13 +1,14 @@
+import DeleteImageDialog from '@/components/images/delete-image-dialog';
 import ImageTags from '@/components/images/image-tags';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { imageUrl } from '@/lib/image-url';
 import AppLayout from '@/layouts/app-layout';
-import { type Image } from '@/types';
-import { Head, Link } from '@inertiajs/react';
+import { type Image, type SharedData } from '@/types';
+import { Head, Link, usePage } from '@inertiajs/react';
 import { formatDistanceToNow } from 'date-fns';
-import { ArrowLeft, X } from 'lucide-react';
+import { ArrowLeft, Trash2, X } from 'lucide-react';
 import { useCallback, useEffect, useState } from 'react';
 
 type ViewMode = 'details' | 'fit' | 'natural';
@@ -17,6 +18,8 @@ interface ImageShowProps {
 }
 
 export default function ImageShow({ image }: ImageShowProps) {
+  const { auth } = usePage<SharedData>().props;
+  const canDelete = auth.user.id === image.user_id;
   const detailImageUrl = imageUrl(image, 816);
   const fullImageUrl = imageUrl(image);
   const [viewMode, setViewMode] = useState<ViewMode>('details');
@@ -60,14 +63,27 @@ export default function ImageShow({ image }: ImageShowProps) {
             <Card>
               <CardContent className="space-y-4">
                 <div>
-                  <div className="flex items-center gap-2">
-                    <Avatar className="h-8 w-8">
-                      <AvatarImage src={image.user.avatar} />
-                      <AvatarFallback>
-                        {image.user.name.charAt(0)}
-                      </AvatarFallback>
-                    </Avatar>
-                    <span className="text-sm">{image.user.name}</span>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <Avatar className="h-8 w-8">
+                        <AvatarImage src={image.user.avatar} />
+                        <AvatarFallback>
+                          {image.user.name.charAt(0)}
+                        </AvatarFallback>
+                      </Avatar>
+                      <span className="text-sm">{image.user.name}</span>
+                    </div>
+
+                    {canDelete && (
+                      <DeleteImageDialog
+                        imageId={image.id}
+                        trigger={
+                          <Button variant="ghost" size="icon">
+                            <Trash2 className="h-4 w-4" />
+                          </Button>
+                        }
+                      />
+                    )}
                   </div>
                 </div>
 

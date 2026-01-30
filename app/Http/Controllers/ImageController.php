@@ -8,6 +8,7 @@ use App\Models\Gender;
 use App\Models\Image;
 use App\Models\ImageType;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Gate;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -70,5 +71,19 @@ class ImageController extends Controller
         }
 
         return back();
+    }
+
+    /**
+     * Delete an image (soft delete).
+     */
+    public function destroy(Image $image): RedirectResponse
+    {
+        Gate::authorize('delete', $image);
+
+        $image->delete();
+
+        return redirect()
+            ->route('images')
+            ->with('success', 'Image deleted successfully.');
     }
 }

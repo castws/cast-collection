@@ -13,6 +13,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('images', [ImageController::class, 'index'])->name('images');
     Route::get('images/{image}', [ImageController::class, 'show'])->name('images.show');
     Route::post('images', [ImageController::class, 'store'])->name('images.store');
+    Route::delete('images/{image}', [ImageController::class, 'destroy'])->name('images.destroy');
     Route::get('images/{image}/resize/{width}', ResizedImageController::class)
         ->name('images.resize')
         ->whereNumber('width');
